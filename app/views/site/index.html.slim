@@ -1,0 +1,85 @@
+.site-wrapper.bg
+  .site-wrapper-inner
+    .cover-container
+      .masthead.clearfix
+        .inner
+          h3.masthead-brand
+      .inner.cover
+        .input-group
+          input#mail.form-control[type='text' placeholder='输入邮箱获得AMAZON礼品券' required]
+          span.input-group-btn
+            button.btn.btn-success[type='button' data-toggle='modal' data-target='#survey-modal']
+              | GO
+      .mastfoot
+        .inner
+
+#survey-modal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="survey-modal-label"]
+  .modal-dialog.modal-lg[role="document"]
+    .modal-content
+      .modal-header
+      .modal-body
+        form[role='form' action='site/create' method='post']
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          .form-group
+            input#r0[type='hidden' name='email']
+          .form-group
+            span 1.你在美国购买房子了吗（condo, house, etc...）？
+            label.radio-inline
+              input#r11[type='radio' name='r1' value=1] Yes
+            label.radio-inline
+              input#r10[type='radio' name='r1' value=0] No
+          .form-group
+            span 2. 你在美国考虑过买房吗（condo, house, etc...）？
+            label.radio-inline
+              input#r21[type='radio' name='r2' value=1] Yes
+            label.radio-inline
+              input#r20[type='radio' name='r2' value=0] No
+          .form-group
+            span 3. 你父母关心美国房地产吗？
+            label.radio-inline
+              input#r31[type='radio' name='r3' value=1] Yes
+            label.radio-inline
+              input#r30[type='radio' name='r3' value=0] No
+          .form-group
+            span 4. 如果你想买房，你更愿意贷款还是用现金？
+            label.radio-inline
+              input#r41[type='radio' name='r4' value=1] 贷款
+            label.radio-inline
+              input#r40[type='radio' name='r4' value=0] 现金
+          .form-group
+            span 5. 学位？
+            label.radio-inline
+              input#r50[type='radio' name='r5' value=0] BA
+            label.radio-inline
+              input#r51[type='radio' name='r5' value=1] MA
+            label.radio-inline
+              input#r52[type='radio' name='r5' value=2] PHD
+            label.radio-inline
+              input#r53[type='radio' name='r5' value=3] MBA
+            label.radio-inline
+              input#r54[type='radio' name='r5' value=4] etc.
+          .form-group
+            span 6. 持有绿卡？
+            label.radio-inline
+              input#r61[type='radio' name='r6' value=1] Yes
+            label.radio-inline
+              input#r60[type='radio' name='r6' value=0] No
+          .form-group
+            span 7. 学校？
+            input#r7[type='text' name='r7' required]
+          .form-group
+            span 8. 买房用途？
+            input#r8[type='text' name='r8' required]
+          .form-group
+            span 9. 你对留学生在美国买房有什么看法？或者有什么想吐槽的 （写的好有额外奖励哦！）
+            input#r9[type='text' name='r9']
+          .form-group
+            center
+              input.btn.btn-success[type='submit']
+      .modal-footer
+
+javascript:
+  $('#survey-modal').on('show.bs.modal', function (event) {
+    var mail = $('#mail').val();
+    $('input#r0').val(mail);
+  });
